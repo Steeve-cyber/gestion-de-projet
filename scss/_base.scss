@@ -1,0 +1,45 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { min-width: 320px; scroll-behavior: smooth; scroll-padding-top: 1.5rem; }
+body {
+  min-width: 320px;
+  margin: 0;
+  color: $color-ink;
+  background: $color-background;
+  font-family: $font-family-base;
+  font-size: 0.94rem;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+button, input, select, textarea { font: inherit; }
+button, a, select { -webkit-tap-highlight-color: transparent; }
+button { color: inherit; }
+a { color: inherit; }
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, .project-card:focus-visible { @include focus-ring; }
+::selection { color: $color-ink; background: #e9d0bd; }
+.icon {
+  display: block;
+  width: 1.15rem;
+  height: 1.15rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex: 0 0 auto;
+}
+.icon-library { position: absolute; width: 0; height: 0; overflow: hidden; }
+.app-shell { min-height: 100vh; }
+.main-content { min-width: 0; min-height: 100vh; }
+.page-content { width: min(100%, 1460px); margin: 0 auto; padding: 2.1rem clamp(1.25rem, 3.5vw, 3.6rem) 1.5rem; }
+.page-footer { display: flex; justify-content: space-between; gap: 1rem; padding: 1.8rem 0 0.5rem; color: $color-muted; font-size: 0.76rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+

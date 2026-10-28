@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f2eb">
+  <meta name="description" content="Atelier, un espace élégant pour organiser les projets, les équipes et les échéances.">
+  <title>Atelier — Gestion de projets</title>
+  <link rel="stylesheet" href="scss/main.css">
+</head>
+<body>
+  <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="icon-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></symbol>
+    <symbol id="icon-folder" viewBox="0 0 24 24"><path d="M3 7.5A2.5 2.5 0 0 1 5.5 5h4l2 2h7A2.5 2.5 0 0 1 21 9.5v8a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5z"/><path d="M3 10h18"/></symbol>
+    <symbol id="icon-checklist" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11"/><path d="m3.5 6 1 1 2-2M3.5 12l1 1 2-2M3.5 18l1 1 2-2"/></symbol>
+    <symbol id="icon-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></symbol>
+    <symbol id="icon-search" viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></symbol>
+    <symbol id="icon-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="icon-chevron" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+    <symbol id="icon-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="icon-trend" viewBox="0 0 24 24"><path d="m3 17 6-6 4 4 8-9"/><path d="M15 6h6v6"/></symbol>
+    <symbol id="icon-spark" viewBox="0 0 24 24"><path d="m12 3 1.9 5.8L20 11l-6.1 2.2L12 19l-2-5.8L4 11l6-2.2L12 3Z"/><path d="m19 14 1 2.5 2.5 1-2.5 1L19 21l-1-2.5-2.5-1 2.5-1L19 14Z"/></symbol>
+    <symbol id="icon-edit" viewBox="0 0 24 24"><path d="m15 5 4 4M4 20l4-.8L19 8a2.1 2.1 0 0 0-3-3L5 16l-1 4Z"/></symbol>
+    <symbol id="icon-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></symbol>
+    <symbol id="icon-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="icon-more" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></symbol>
+  </svg>
+
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Navigation principale">
+      <a class="brand" href="#overview" aria-label="Atelier, accueil">
+        <span class="brand-mark"><svg class="icon"><use href="#icon-spark"/></svg></span>
+        <span class="brand-copy"><strong>atelier</strong><small>ESPACE PROJET</small></span>
+      </a>
+
+      <div class="workspace-switcher">
+        <span class="workspace-avatar">A</span>
+        <span class="workspace-copy"><strong>Studio créatif</strong><small>Espace de travail</small></span>
+        <svg class="icon workspace-chevron"><use href="#icon-chevron"/></svg>
+      </div>
+
+      <p class="nav-caption">ESPACE DE TRAVAIL</p>
+      <nav class="primary-nav">
+        <a class="nav-item is-active" href="#overview" data-nav="overview"><svg class="icon"><use href="#icon-grid"/></svg><span>Vue d’ensemble</span></a>
+        <a class="nav-item" href="#projects" data-nav="projects"><svg class="icon"><use href="#icon-folder"/></svg><span>Mes projets</span><span class="nav-count" id="nav-project-count">03</span></a>
+        <a class="nav-item" href="#tasks" data-nav="tasks"><svg class="icon"><use href="#icon-checklist"/></svg><span>Toutes les tâches</span><span class="nav-count" id="nav-task-count">0</span></a>
+        <a class="nav-item" href="#upcoming" data-nav="upcoming"><svg class="icon"><use href="#icon-calendar"/></svg><span>Échéances</span></a>
+      </nav>
+
+      <div class="sidebar-projects">
+        <div class="sidebar-heading"><p class="nav-caption">PROJETS RÉCENTS</p><button class="icon-button" type="button" data-open-task aria-label="Ajouter une tâche"><svg class="icon"><use href="#icon-plus"/></svg></button></div>
+        <div id="project-nav" class="project-nav"></div>
+      </div>
+
+      <div class="sidebar-bottom">
+        <div class="sidebar-note"><span class="note-icon"><svg class="icon"><use href="#icon-spark"/></svg></span><p><strong>Un pas après l’autre.</strong><br>Vos projets avancent bien.</p></div>
+        <div class="profile-row"><span class="profile-avatar">AL</span><span class="profile-copy"><strong>Alex Laurent</strong><small>Administrateur</small></span></div>
+      </div>
+    </aside>
+
+    <main class="main-content" id="overview">
+      <header class="topbar">
+        <button class="icon-button mobile-menu" type="button" id="menu-toggle" aria-label="Ouvrir la navigation" aria-expanded="false" aria-controls="sidebar"><svg class="icon"><use href="#icon-menu"/></svg></button>
+        <div class="breadcrumbs"><span>Mon espace</span><svg class="icon"><use href="#icon-chevron"/></svg><strong>Vue d’ensemble</strong></div>
+        <div class="topbar-actions"><span class="today-label" id="today-label"></span><span class="topbar-avatar" aria-label="Profil Alex Laurent">AL</span></div>
+      </header>
+
+      <div class="page-content">
+        <section class="welcome-row" aria-labelledby="welcome-title">
+          <div><p class="eyebrow" id="welcome-date">MERCREDI 28 OCTOBRE 2026</p><h1 id="welcome-title">Bonjour Alex <span class="wave" aria-hidden="true">✳</span></h1><p class="welcome-subtitle">Voici ce qui se passe dans votre espace aujourd’hui.</p></div>
+          <button class="button button-primary" type="button" data-open-task><svg class="icon"><use href="#icon-plus"/></svg><span>Nouvelle tâche</span></button>
+        </section>
+
+        <section class="focus-banner" aria-label="Point de la semaine">
+          <div class="focus-content"><span class="focus-kicker"><svg class="icon"><use href="#icon-spark"/></svg> VOTRE RYTHME</span><h2>Les petits progrès font<br><em>les grands projets.</em></h2><p id="weekly-message">Continuez sur votre lancée, votre espace est à jour.</p><a class="focus-link" href="#tasks">Voir mes tâches <svg class="icon"><use href="#icon-arrow"/></svg></a></div>
+          <div class="focus-visual" aria-hidden="true"><div class="sun-disc"></div><div class="sun-arc sun-arc-one"></div><div class="sun-arc sun-arc-two"></div><div class="sun-dot"></div><span class="visual-caption">FAIT AVEC INTENTION</span></div>
+          <div class="focus-progress"><span>AVANCEMENT GLOBAL</span><strong id="hero-progress-value">0%</strong><div class="progress-track"><i id="hero-progress-bar"></i></div><small id="hero-progress-label">0 tâche terminée</small></div>
+        </section>
+
+        <section class="stats-grid" aria-label="Résumé des projets">
+          <article class="stat-card"><div class="stat-top"><span class="stat-label">Tâches en cours</span><span class="stat-icon stat-icon-sand"><svg class="icon"><use href="#icon-checklist"/></svg></span></div><strong class="stat-value" id="stat-open">0</strong><div class="stat-foot"><span class="status-dot dot-orange"></span><span>À traiter ou en cours</span></div></article>
+          <article class="stat-card"><div class="stat-top"><span class="stat-label">Terminées</span><span class="stat-icon stat-icon-green"><svg class="icon"><use href="#icon-check"/></svg></span></div><strong class="stat-value" id="stat-done">0</strong><div class="stat-foot"><span id="stat-done-rate">0%</span><span>du travail accompli</span></div></article>
+          <article class="stat-card"><div class="stat-top"><span class="stat-label">À échéance bientôt</span><span class="stat-icon stat-icon-rose"><svg class="icon"><use href="#icon-clock"/></svg></span></div><strong class="stat-value" id="stat-upcoming">0</strong><div class="stat-foot"><span>dans les 7 prochains jours</span></div></article>
+          <article class="stat-card"><div class="stat-top"><span class="stat-label">Projets actifs</span><span class="stat-icon stat-icon-lilac"><svg class="icon"><use href="#icon-folder"/></svg></span></div><strong class="stat-value" id="stat-projects">0</strong><div class="stat-foot"><span>Votre espace créatif</span></div></article>
+        </section>
+
+        <section class="projects-section" id="projects" aria-labelledby="projects-title">
+          <div class="section-heading"><div><p class="eyebrow">LÀ OÙ LES IDÉES PRENNENT FORME</p><h2 id="projects-title">Vos projets</h2></div><a class="text-link" href="#tasks">Toutes les tâches <svg class="icon"><use href="#icon-arrow"/></svg></a></div>
+          <div class="projects-grid" id="project-cards"></div>
+        </section>
+
+        <section class="work-area" id="tasks" aria-labelledby="tasks-title">
+          <div class="section-heading tasks-heading"><div><p class="eyebrow">LE PROCHAIN PETIT PAS</p><h2 id="tasks-title">Vos tâches</h2></div><label class="search-box"><svg class="icon"><use href="#icon-search"/></svg><input id="task-search" type="search" placeholder="Rechercher une tâche..." aria-label="Rechercher une tâche"><kbd>Ctrl K</kbd></label></div>
+          <div class="task-toolbar"><div class="filter-tabs" role="group" aria-label="Filtrer les tâches par statut"><button class="filter-tab is-active" type="button" data-filter="all">Toutes <span id="filter-count-all">0</span></button><button class="filter-tab" type="button" data-filter="À faire">À faire <span id="filter-count-todo">0</span></button><button class="filter-tab" type="button" data-filter="En cours">En cours <span id="filter-count-progress">0</span></button><button class="filter-tab" type="button" data-filter="Terminée">Terminées <span id="filter-count-done">0</span></button></div><label class="sort-select"><span>Trier par</span><select id="task-sort" aria-label="Trier les tâches"><option value="deadline">Échéance</option><option value="priority">Priorité</option><option value="recent">Plus récentes</option></select></label></div>
+          <div class="board" id="task-board" aria-live="polite"></div>
+        </section>
+
+        <section class="upcoming-section" id="upcoming" aria-labelledby="upcoming-title"><div class="section-heading compact-heading"><div><p class="eyebrow">GARDER LE CAP</p><h2 id="upcoming-title">Prochaines échéances</h2></div><span class="upcoming-hint">Les 7 prochains jours</span></div><div class="upcoming-list" id="upcoming-list"></div></section>
+        <footer class="page-footer"><span>Atelier <span aria-hidden="true">·</span> Organisez vos idées, donnez-leur vie.</span><span>Vos données restent enregistrées sur cet appareil.</span></footer>
+      </div>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="task-modal" hidden>
+    <section class="task-dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-description">
+      <div class="dialog-heading"><div><p class="eyebrow">FAITES AVANCER VOTRE PROJET</p><h2 id="modal-title">Nouvelle tâche</h2><p id="modal-description">Une idée, une étape, un projet qui avance.</p></div><button class="icon-button dialog-close" type="button" data-close-modal aria-label="Fermer"><svg class="icon"><use href="#icon-close"/></svg></button></div>
+      <form id="task-form">
+        <label class="field field-wide"><span>Nom de la tâche <i>*</i></span><input id="task-name" name="name" type="text" maxlength="100" placeholder="Ex. Finaliser la maquette d’accueil" required autocomplete="off"></label>
+        <div class="form-grid"><label class="field"><span>Projet</span><select id="task-project" name="project"></select></label><label class="field"><span>Statut</span><select id="task-status" name="status"><option>À faire</option><option>En cours</option><option>Terminée</option></select></label><label class="field"><span>Priorité</span><select id="task-priority" name="priority"><option value="high">Haute</option><option value="medium" selected>Normale</option><option value="low">Basse</option></select></label><label class="field"><span>Échéance</span><input id="task-deadline" name="deadline" type="date"></label></div>
+        <label class="field field-wide"><span>Notes <small>Facultatif</small></span><textarea id="task-notes" name="notes" rows="3" maxlength="300" placeholder="Un détail utile pour la suite..."></textarea></label>
+        <div class="dialog-actions"><button class="button button-quiet" type="button" data-close-modal>Annuler</button><button class="button button-primary" id="submit-btn" type="submit"><svg class="icon"><use href="#icon-plus"/></svg><span>Ajouter la tâche</span></button></div>
+      </form>
+    </section>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="js/app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+@use 'variables' as *;
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == sm { @media (min-width: $breakpoint-sm) { @content; } }
+  @else if $breakpoint == md { @media (min-width: $breakpoint-md) { @content; } }
+  @else if $breakpoint == lg { @media (min-width: $breakpoint-lg) { @content; } }
+}
+
+@mixin transition($properties: all, $duration: 180ms, $easing: ease) {
+  transition: $properties $duration $easing;
+}
+
+@mixin focus-ring($color: $color-primary) {
+  outline: 3px solid rgba($color, 0.3);
+  outline-offset: 3px;
+}
+
