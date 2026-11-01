@@ -23,15 +23,16 @@ Ce projet a été conçu pour structurer proprement un site web en séparant les
 L'organisation des dossiers et des fichiers SCSS respecte les bonnes pratiques de maintenance :
 
 ```text
-📁 mon-projet/
-│
-├── 📁 css/                 # CSS compilé (généré)
-├── 📁 scss/                # Fichiers sources SCSS
-│   ├── 📁 base/            # Reset, typographie, styles globaux (_base.scss)
-│   ├── 📁 components/      # Composants réutilisables (_components.scss)
-│   ├── 📁 abstracts/       # Variables, mixins, fonctions (_variables.scss, _mixins.scss)
-│   └── 📄 main.scss        # Fichier principal qui importe tous les partiels
-│
-├── 📁 js/                  # Scripts JavaScript vanilla
-├── 📁 images/              # Ressources graphiques
-└── 📄 index.html           # Page principale
+
+📁 gestion-de-projet/
+├── js/
+│   └── app.js
+├── scss/
+│   ├── _variables.scss
+│   ├── _mixins.scss
+│   ├── _base.scss
+│   ├── _components.scss
+│   ├── main.scss        # importe tous les partiels
+│   ├── main.css         # CSS compilé
+│   └── main.css.map
+└── index.html
