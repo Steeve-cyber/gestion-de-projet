@@ -32,7 +32,7 @@ L'organisation des dossiers et des fichiers SCSS respecte les bonnes pratiques d
 │   ├── _mixins.scss
 │   ├── _base.scss
 │   ├── _components.scss
-│   ├── main.scss        # importe tous les partiels
+│   ├── main.scss        # import all partials
 │   ├── main.css         # CSS compilé
 │   └── main.css.map
 └── index.html
